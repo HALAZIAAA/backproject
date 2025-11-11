@@ -1,0 +1,28 @@
+# --- 공통 ---
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+Thumbs.db
+
+# --- 가상환경 ---
+.venv/
+env/
+.conda/
+.env
+
+# --- VSCode ---
+.vscode/
+.idea/
+
+# --- Node / React ---
+frontend/node_modules/
+frontend/.next/
+frontend/dist/
+frontend/build/
+
+# --- FastAPI static ---
+backend/static/
+*.brf
+*.docx
+*.txt
