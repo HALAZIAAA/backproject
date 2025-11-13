@@ -1,4 +1,5 @@
 # backend/services/convert_service.py
+# 이제는 쓰지 않음 vlm_service로 대체됨
 
 import re, os, unicodedata
 from datetime import datetime
