@@ -225,4 +225,4 @@ def convert_to_text_and_docx_with_vlm(input_path: str, output_dir="static", desi
         doc.add_paragraph(line)
     doc.save(docx_path)
 
-    return txt_path, docx_path
+    return docx_path

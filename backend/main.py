@@ -5,6 +5,9 @@ from routers import process_router
 from fastapi.middleware.cors import CORSMiddleware
 from routers import process_router, braille_router
 
+from models.database import Base, engine
+from models import file_record
+
 app = FastAPI(title="Lecture Material Converter")
 
 # React와 연결용 CORS 설정
@@ -15,6 +18,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# 테이블 생성
+Base.metadata.create_all(bind=engine)
 
 # 라우터 등록
 app.include_router(process_router.router)
