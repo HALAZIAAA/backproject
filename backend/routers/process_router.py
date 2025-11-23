@@ -67,4 +67,19 @@ def check_status(file_id: str, db: Session = Depends(get_db)):
         "path": record.result_path
     }
 
-    
+# -------------------------------
+# 3) 전체 기록 조회 API (프론트 새로고침 유지용)
+# -------------------------------
+@router.get("/records")
+def list_records(db: Session = Depends(get_db)):
+    records = db.query(FileRecord).order_by(FileRecord.id.desc()).all()
+
+    return [
+        {
+            "file_id": r.file_id,
+            "original_name": r.original_name,
+            "status": r.status,
+            "result_path": r.result_path
+        }
+        for r in records
+    ]
