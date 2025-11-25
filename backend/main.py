@@ -4,11 +4,19 @@ from fastapi import FastAPI
 from routers import process_router
 from fastapi.middleware.cors import CORSMiddleware
 from routers import process_router, braille_router
-
+from fastapi.staticfiles import StaticFiles
+import os
 from models.database import Base, engine
 from models import file_record
 
 app = FastAPI(title="Lecture Material Converter")
+
+# static 폴더 자동 생성
+if not os.path.exists("static"):
+    os.makedirs("static")
+
+# /static 경로로 정적 파일 제공
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # React와 연결용 CORS 설정
 app.add_middleware(
