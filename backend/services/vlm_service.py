@@ -147,11 +147,11 @@ def generate_caption(image_pil: Image.Image) -> str:
     load_vlm_model()  # 요청 시점에 모델 로드
 
     prompt = """<|im_start|>user
-<image>
-Describe this image.
-<|im_end|>
-<|im_start|>assistant
-"""
+                <image>
+                이 이미지를 한국어로 자세히 설명해줘.
+                <|im_end|>
+                <|im_start|>assistant
+            """
 
     inputs = processor(
         images=image_pil,
