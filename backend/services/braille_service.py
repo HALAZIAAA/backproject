@@ -58,11 +58,18 @@ def convert_docx_to_brf(input_path: str, output_dir="static", desired_name: str 
     text = ''.join(ch for ch in text if ch.strip() != '' or ch == '\n')
     text = ''.join(ch for ch in text if (ord(ch) >= 32 and ord(ch) != 127) or ch == "\n")
 
-    # BAD 문자 검사
+    # BAD 문자 제거 + 점자 불가 문자는 공백으로 치환
+    cleaned_chars = []
     for ch in text:
-        translate_to_unicode(ch)
+        try:
+            translate_to_unicode(ch)   # 점자 변환 가능 여부 검사
+            cleaned_chars.append(ch)
+        except Exception:
+            cleaned_chars.append(" ")  # 점자 불가 문자는 공백으로 대체
 
-    # 점자 변환
+    text = "".join(cleaned_chars)
+
+    # 안전하게 최종 점자 변환
     brf = translate_to_unicode(text)
 
     os.makedirs(output_dir, exist_ok=True)
